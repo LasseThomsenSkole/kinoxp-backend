@@ -45,6 +45,10 @@ public class Movie {
         this.description = description;
     }
 
+    public Movie() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -111,6 +115,5 @@ public class Movie {
 }
 
 enum Genre {
-    HORROR, ROMANCE, COMEDY, SCI_FI, ACTION, THRILLER, ADVENTURE,
-    ANIMATION, DOCUMENTARY, DRAMA, FAMILY
+    HORROR, ROMANCE, COMEDY, SCI_FI, ACTION, THRILLER, ADVENTURE, ANIMATION, DOCUMENTARY, DRAMA, FAMILY
 }
