@@ -35,13 +35,79 @@ public class Movie {
 
 
 
+    public Movie (String title, Genre genre, int duration, String ageLimit, Date releaseDate, Date endDate, String description) {
+        this.title = title;
+        this.genre = genre;
+        this.duration = duration;
+        this.ageLimit = ageLimit;
+        this.releaseDate = releaseDate;
+        this.endDate = endDate;
+        this.description = description;
+    }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
+    public int getDuration() {
+        return duration;
+    }
 
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
+    public String getAgeLimit() {
+        return ageLimit;
+    }
+
+    public void setAgeLimit(String ageLimit) {
+        this.ageLimit = ageLimit;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 }
 
 enum Genre {

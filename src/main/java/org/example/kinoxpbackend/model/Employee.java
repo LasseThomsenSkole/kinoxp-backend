@@ -22,6 +22,7 @@ public class Employee {
     @Column(nullable = false, length = 50)
     private String password;
 
+
 }
 
 enum Role {
