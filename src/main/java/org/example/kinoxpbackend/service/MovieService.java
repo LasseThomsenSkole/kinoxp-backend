@@ -46,7 +46,9 @@ public class MovieService {
         }
     }
 
-    public List<Movie>
+    public List<Movie> findAllMovies(){
+        return movieRepository.findAll();
+    }
 
 
 }
