@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -73,9 +72,6 @@ public class Employee {
         this.role = role;
     }
 
-    enum Role {
-        ADMIN, MOVIE_OPERATOR, INSPECTING_AND_CLEANING, SALE
-    }
 }
 
 

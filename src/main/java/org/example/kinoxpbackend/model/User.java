@@ -1,9 +1,7 @@
 package org.example.kinoxpbackend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -11,42 +9,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
 
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
+    @Getter
     @Column(nullable = false, length = 50)
     private String username;
 
+    @Setter
+    @Getter
     @Column(nullable = false, length = 60)
     private String password;
 
-    public User(String username, String password){
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    public User(String username, String password, Role role){
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
