@@ -15,6 +15,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
+    //TODO DEN HER SKAL VÆRE EN ENV VARIABEL
     private final String SECRET_KEY = "secret";
 
     public String extractUsername(String token) {
