@@ -19,7 +19,7 @@ public class Employee {
     @Column(nullable = false)
     private Role role;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 160)
     private String password;
 
     public Employee(){
