@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -19,10 +20,6 @@ public class User {
 
     @Column(nullable = false, length = 60)
     private String password;
-
-
-    public User(){
-    }
 
     public User(String username, String password){
         this.username = username;
