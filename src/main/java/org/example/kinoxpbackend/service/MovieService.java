@@ -46,8 +46,20 @@ public class MovieService {
         }
     }
 
-    public List<Movie> findAllMovies(){
+    public List<Movie> getMovieList(){
         return movieRepository.findAll();
+    }
+
+
+    //jeg er i tvivl om den her
+    public String findAllMovies(){
+        List<Movie> movies = getMovieList();
+        StringBuilder movieList = new StringBuilder();
+
+        for (Movie movie : movies){
+            movieList.append(movie.getTitle());
+        }
+        return movieList.toString();
     }
 
 
