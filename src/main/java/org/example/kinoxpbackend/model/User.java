@@ -6,22 +6,20 @@ import lombok.*;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class User {
+    public User() {
+    }
 
-    @Setter
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Setter
-    @Getter
+
     @Column(nullable = false, length = 50)
     private String username;
 
-    @Setter
-    @Getter
+
     @Column(nullable = false, length = 60)
     private String password;
 
@@ -29,10 +27,35 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    public User(String username, String password, Role role){
-        this.username = username;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
         this.role = role;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
