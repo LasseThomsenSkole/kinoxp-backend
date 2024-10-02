@@ -72,9 +72,10 @@ public class Employee {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    enum Role {
+        ADMIN, MOVIE_OPERATOR, INSPECTING_AND_CLEANING, SALE
+    }
 }
 
-enum Role {
-    ADMIN, MOVIE_OPERATOR, INSPECTING_AND_CLEANING, SALE
-}
 
