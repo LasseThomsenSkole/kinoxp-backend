@@ -62,5 +62,18 @@ public class MovieService {
         return movieList.toString();
     }
 
+    public String getMovieDetails(int id, Movie movie){
+        movieRepository.findMovieById(id);
+        StringBuilder movieDetails = new StringBuilder();
+
+        movieDetails.append(movie.getTitle());
+        movieDetails.append(movie.getGenre());
+        movieDetails.append(movie.getDuration());
+        movieDetails.append(movie.getAgeLimit());
+        movieDetails.append(movie.getDescription());
+
+        return movieDetails.toString();
+    }
+
 
 }

@@ -37,4 +37,10 @@ public class MovieController {
         movieService.findAllMovies();
         return "/";
     }
+
+    @GetMapping("/movie/{id}")
+    public String movieDetails(@PathVariable int id, @RequestBody Movie movie){
+        movieService.getMovieDetails(id, movie);
+        return "/";
+    }
 }
