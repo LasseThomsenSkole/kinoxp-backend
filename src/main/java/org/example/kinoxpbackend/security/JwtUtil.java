@@ -1,4 +1,4 @@
-package org.example.kinoxpbackend.util;
+package org.example.kinoxpbackend.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

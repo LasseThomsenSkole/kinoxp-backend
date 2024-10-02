@@ -1,10 +1,10 @@
 package org.example.kinoxpbackend.controller;
 
-import org.example.kinoxpbackend.model.AuthenticationRequest;
+import org.example.kinoxpbackend.security.AuthenticationRequest;
 import org.example.kinoxpbackend.model.User;
 import org.example.kinoxpbackend.repository.UserRepository;
 import org.example.kinoxpbackend.service.CustomUserDetailsService;
-import org.example.kinoxpbackend.util.JwtUtil;
+import org.example.kinoxpbackend.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package org.example.kinoxpbackend.model;
+package org.example.kinoxpbackend.security;
 
 import lombok.Builder;
 import lombok.Getter;
