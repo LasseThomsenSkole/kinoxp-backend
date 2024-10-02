@@ -21,6 +21,8 @@ public class Showtime {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date showtime; // Date and time
+    @Column(nullable = false)
+    private Date startTime;
 
     public Showtime(Movie movie, Theatre theatre, Date showtime){
         this.movie = movie;
@@ -60,9 +62,15 @@ public class Showtime {
         return showtime;
     }
 
-
     public void setShowtime(Date showtime) {
         this.showtime = showtime;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 }
 
