@@ -35,7 +35,7 @@ public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
-
+    //https://www.youtube.com/watch?v=U8D2MPwNARA&list=PLVuqGBBX_tP3KmownF68ifFmgPQt-ujBg&index=5
     @PostMapping("/register")
     public String registerUser(@RequestBody User user) {
         System.out.println("Registering user: " + user.getUsername()); // Add logging
