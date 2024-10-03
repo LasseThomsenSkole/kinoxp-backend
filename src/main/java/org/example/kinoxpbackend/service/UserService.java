@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class UserService {
     private static final String EXISTING_USERNAME = "UserTest";
-
+    //TODO skal laves om til database
     public Optional<User> getUserByUsername(String username) {
         if (! EXISTING_USERNAME.equals(username)) return Optional.empty();
 
