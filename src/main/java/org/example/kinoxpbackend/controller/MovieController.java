@@ -21,12 +21,12 @@ public class MovieController {
         return "/";
     }
 
-    @PostMapping("/delete-movie")
+    @PostMapping("/delete-movie/{id}")
     public void deleteMovie(@PathVariable int id){
         movieService.deleteMovie(id);
     }
 
-    @PostMapping("/edit-movie")
+    @PostMapping("/edit-movie/{id}")
     public String editMovie(@PathVariable int id, @RequestBody Movie updatedMovie){
         movieService.editMovie(id, updatedMovie);
         return "/";
