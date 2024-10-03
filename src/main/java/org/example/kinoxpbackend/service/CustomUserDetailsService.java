@@ -18,11 +18,9 @@ import java.util.List;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserService userService;
-
     @Override
     public UserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userService.getUserByUsername(username);
 
         return UserPrincipal.builder()
                 .id(user.getId())
