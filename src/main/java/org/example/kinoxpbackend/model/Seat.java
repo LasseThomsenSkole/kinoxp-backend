@@ -8,7 +8,7 @@ public class Seat implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private int rowNumber;
     private int seatNumber;
@@ -34,11 +34,11 @@ public class Seat implements Serializable {
         this.showtime = showtime;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
