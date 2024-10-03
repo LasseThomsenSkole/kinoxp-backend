@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-
+//todo lav om til /auth/
 @RestController
 @RequestMapping("/api")
 public class AuthController {
@@ -54,11 +54,11 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(auth);
-        final UserPrincipal userPrincipal = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final UserPrincipal userPrincipal = (UserPrincipal) auth.getPrincipal();
 
         return jwtUtil.generateToken(userPrincipal);
     }
-    @PostMapping("/test")
+    @GetMapping("/test")
     public String test(@AuthenticationPrincipal UserPrincipal userPrincipal) {
         return "Test: " + userPrincipal.getUsername();
     }
