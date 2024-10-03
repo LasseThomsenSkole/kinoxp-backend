@@ -3,13 +3,15 @@ package org.example.kinoxpbackend.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -31,7 +33,7 @@ public class JwtUtil {
         return claimsResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String token) {
+    public Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
 
@@ -41,8 +43,13 @@ public class JwtUtil {
 
     public String generateToken(UserPrincipal userPrincipal) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", userPrincipal.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
+        claims.put("userId", userPrincipal.getId());
         return createToken(claims, userPrincipal.getUsername());
     }
+
 
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
@@ -54,4 +61,18 @@ public class JwtUtil {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+    public UserPrincipal jwtToUserPrincipal(Claims claims) {
+        String username = claims.getSubject();
+        List<String> roles = (List<String>) claims.get("roles");
+
+        List<GrantedAuthority> authorities = roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+
+        return UserPrincipal.builder()
+                .username(username)
+                .authorities(authorities)
+                .build();
+    }
+
 }
