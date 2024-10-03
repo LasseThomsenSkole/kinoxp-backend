@@ -24,6 +24,7 @@ public class Seat implements Serializable {
     @JoinColumn(name = "showtime_id")
     private Showtime showtime;
 
+
     public Seat() {}
 
     public Seat(int rowNumber, int seatNumber, SeatStatus status, Theatre theatre, Showtime showtime) {

@@ -33,9 +33,11 @@ public class Movie {
     @Column(length = 255)
     private String description;
 
+    @Column(nullable = false)
+    private int basePrice; //admin skal kunne ændre priser - kun basepris?
 
 
-    public Movie (String title, Genre genre, int duration, String ageLimit, Date releaseDate, Date endDate, String description) {
+    public Movie (String title, Genre genre, int duration, String ageLimit, Date releaseDate, Date endDate, String description, int basePrice) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
@@ -43,6 +45,7 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.endDate = endDate;
         this.description = description;
+        this.basePrice = basePrice;
     }
 
     public Movie() {
@@ -103,6 +106,14 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
     }
 
     public Genre getGenre() {

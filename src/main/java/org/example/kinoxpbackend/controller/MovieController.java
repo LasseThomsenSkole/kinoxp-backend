@@ -32,11 +32,11 @@ public class MovieController {
         return "/";
     }
 
-    @GetMapping("/all-movies")
+   /* @GetMapping("/all-movies")
     public String getAllMovies(){
         movieService.findAllMovies();
         return "/";
-    }
+    }*/
 
     @GetMapping("/movie/{id}")
     public String movieDetails(@PathVariable int id, @RequestBody Movie movie){
