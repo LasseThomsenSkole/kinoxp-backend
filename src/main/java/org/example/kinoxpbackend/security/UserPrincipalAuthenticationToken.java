@@ -7,9 +7,9 @@ import java.util.Collection;
 
 public class UserPrincipalAuthenticationToken extends AbstractAuthenticationToken {
     private final UserPrincipal userPrincipal;
-    public UserPrincipalAuthenticationToken(UserPrincipal userPrincipal, UserPrincipal userPrincipal1) {
+    public UserPrincipalAuthenticationToken(UserPrincipal userPrincipal) {
         super(userPrincipal.getAuthorities());
-        this.userPrincipal = userPrincipal1;
+        this.userPrincipal = userPrincipal;
         setAuthenticated(true);
     }
 
