@@ -1,14 +1,22 @@
 package org.example.kinoxpbackend.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
 
     @Column(nullable = false, length = 50)
     private String title;
@@ -34,7 +42,7 @@ public class Movie {
     private String description;
 
     @Column(nullable = false)
-    private int basePrice; //admin skal kunne ændre priser - kun basepris?
+    private double basePrice; //admin skal kunne ændre priser - kun basepris?
 
 
     public Movie (String title, Genre genre, int duration, String ageLimit, Date releaseDate, Date endDate, String description, int basePrice) {
@@ -48,81 +56,7 @@ public class Movie {
         this.basePrice = basePrice;
     }
 
-    public Movie() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public String getAgeLimit() {
-        return ageLimit;
-    }
-
-    public void setAgeLimit(String ageLimit) {
-        this.ageLimit = ageLimit;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
 }
 
 enum Genre {
