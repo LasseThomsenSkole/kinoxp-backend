@@ -8,6 +8,7 @@ import org.example.kinoxpbackend.security.UserPrincipal;
 import org.example.kinoxpbackend.service.CustomUserDetailsService;
 import org.example.kinoxpbackend.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,14 +35,14 @@ public class AuthController {
     private JwtUtil jwtUtil;
     //https://www.youtube.com/watch?v=U8D2MPwNARA&list=PLVuqGBBX_tP3KmownF68ifFmgPQt-ujBg&index=5
     @PostMapping("/register")
-    public String registerUser(@RequestBody User user) {
-        System.out.println("Registering user: " + user.getUsername()); // Add logging
-        // Encode the user's password
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
+        if (userRepository.findByUsername(user.getUsername()) != null) return ResponseEntity.badRequest()
+                .body("User already exists");
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.ADMIN);
-        // Save the user to the database
         userRepository.save(user);
-        return "User registered successfully";
+        return ResponseEntity.ok("User created");
     }
 
     @PostMapping("/login")
