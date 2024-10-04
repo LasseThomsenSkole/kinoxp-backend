@@ -61,7 +61,7 @@ public class MovieService {
         }
         return movieList.toString();
     }
-
+    //ved ik hvor det her skal bruges - lasse
     public String getMovieDetails(int id, Movie movie){
         movieRepository.findMovieById(id);
         StringBuilder movieDetails = new StringBuilder();
@@ -74,6 +74,8 @@ public class MovieService {
 
         return movieDetails.toString();
     }
-
+    public Movie getMovieById(int id){
+        return movieRepository.findMovieById(id);
+    }
 
 }
