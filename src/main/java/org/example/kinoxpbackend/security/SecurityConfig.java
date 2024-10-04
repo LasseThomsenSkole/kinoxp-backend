@@ -47,17 +47,15 @@ public class SecurityConfig {
         http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .securityMatcher("/api/**") // map current config to given resource path
-                .sessionManagement(sessionManagementConfigurer
-                        -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> registry
-                        //.requestMatchers("/api/**", "/movie/**").permitAll()
-                        .requestMatchers("/api/admin").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers("api/login", "api/register").permitAll()
+                        .requestMatchers("/auth/admin").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers("/auth/login", "/auth/register").permitAll()
                         .requestMatchers("/movie/**").permitAll()
                         .anyRequest().authenticated());
 
-         return http.build();
+        return http.build();
     }
+
 }
