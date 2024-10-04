@@ -37,7 +37,6 @@ public class AuthController {
     public String registerUser(@RequestBody User user) {
         System.out.println("Registering user: " + user.getUsername()); // Add logging
         // Encode the user's password
-        user.setUsername(user.getUsername());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.ADMIN);
         // Save the user to the database
