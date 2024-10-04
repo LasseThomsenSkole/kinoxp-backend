@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/movie")
+@RestController
+@RequestMapping("/movie")
 public class MovieController {
 
     @Autowired
@@ -18,7 +19,7 @@ public class MovieController {
     @PostMapping("/create-movie")
     public String createMovie(@RequestBody Movie movie){
         movieService.createMovie(movie);
-        return "/";
+        return "movie added successfully";
     }
 
     @PostMapping("/delete-movie/{id}")
