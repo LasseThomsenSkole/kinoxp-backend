@@ -1,5 +1,6 @@
 package org.example.kinoxpbackend.security;
 import lombok.RequiredArgsConstructor;
+import org.example.kinoxpbackend.model.Role;
 import org.example.kinoxpbackend.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,7 +52,10 @@ public class SecurityConfig {
                         -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/api/**", "/movie/**").permitAll()
+                        //.requestMatchers("/api/**", "/movie/**").permitAll()
+                        .requestMatchers("/api/admin").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers("api/login", "api/register").permitAll()
+                        .requestMatchers("/movie/**").permitAll()
                         .anyRequest().authenticated());
 
          return http.build();
