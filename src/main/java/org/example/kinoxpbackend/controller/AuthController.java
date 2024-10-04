@@ -25,9 +25,6 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -42,7 +39,7 @@ public class AuthController {
         // Encode the user's password
         user.setUsername(user.getUsername());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.USER);
+        user.setRole(Role.ADMIN);
         // Save the user to the database
         userRepository.save(user);
         return "User registered successfully";
@@ -55,12 +52,16 @@ public class AuthController {
         );
         SecurityContextHolder.getContext().setAuthentication(auth);
         final UserPrincipal userPrincipal = (UserPrincipal) auth.getPrincipal();
-
+        System.out.println("role: " + userPrincipal.getAuthorities()); // Add logging
         return jwtUtil.generateToken(userPrincipal);
     }
     @GetMapping("/test")
     public String test(@AuthenticationPrincipal UserPrincipal userPrincipal) {
         return "Test: " + userPrincipal.getUsername();
+    }
+    @GetMapping("/admin")
+    public String admin(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+        return "Hello, Admin!";
     }
 
     @GetMapping("/hello")
