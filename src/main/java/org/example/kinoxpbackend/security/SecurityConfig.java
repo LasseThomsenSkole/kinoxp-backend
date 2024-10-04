@@ -51,7 +51,7 @@ public class SecurityConfig {
                         -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/api/**", "/movie/**").permitAll()
                         .anyRequest().authenticated());
 
          return http.build();
