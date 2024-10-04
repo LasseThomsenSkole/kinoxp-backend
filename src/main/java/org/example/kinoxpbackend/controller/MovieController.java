@@ -39,9 +39,9 @@ public class MovieController {
         return "/";
     }*/
 
-    @GetMapping("/movie/{id}")
-    public String movieDetails(@PathVariable int id, @RequestBody Movie movie){
-        movieService.getMovieDetails(id, movie);
-        return "/";
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> movieDetails(@PathVariable int id){
+        Movie movie = movieService.getMovieById(id);
+        return ResponseEntity.ok(movie);
     }
 }
