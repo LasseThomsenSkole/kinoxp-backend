@@ -10,7 +10,7 @@ public class PriceCalculatorService {
     Movie movieClass = new Movie();
     Seat seatClass = new Seat();
 
-    int basePrice = movieClass.getBasePrice();
+    double basePrice = movieClass.getBasePrice();
     int row = seatClass.getRowNumber();
     private static final double groupDiscountRate = 0.07;
     private static final double groupReservationFee = 5;
