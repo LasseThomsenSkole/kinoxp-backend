@@ -4,6 +4,7 @@ import org.example.kinoxpbackend.model.Role;
 import org.example.kinoxpbackend.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -58,7 +59,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(registry -> registry
                         .requestMatchers("/auth/admin").hasAuthority(Role.ADMIN.name())
                         .requestMatchers("/auth/login", "/auth/register").permitAll()
-                        .requestMatchers("/movie/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/movie/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/movie/create-movie").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.DELETE, "/movie/delete-movie/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.PUT, "/movie/edit-movie/**").hasAuthority(Role.ADMIN.name())
                         .anyRequest().authenticated());
 
         return http.build();
