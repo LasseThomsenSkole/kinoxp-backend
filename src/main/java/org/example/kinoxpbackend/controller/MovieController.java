@@ -15,19 +15,18 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
-
     @PostMapping("/create-movie")
     public String createMovie(@RequestBody Movie movie){
         movieService.createMovie(movie);
         return "movie added successfully";
     }
 
-    @PostMapping("/delete-movie/{id}")
+    @DeleteMapping("/delete-movie/{id}")
     public void deleteMovie(@PathVariable int id){
         movieService.deleteMovie(id);
     }
 
-    @PostMapping("/edit-movie/{id}")
+    @PutMapping("/edit-movie/{id}")
     public String editMovie(@PathVariable int id, @RequestBody Movie updatedMovie){
         movieService.editMovie(id, updatedMovie);
         return "/";
