@@ -1,8 +1,6 @@
 package org.example.kinoxpbackend.service;
 
-import org.example.kinoxpbackend.model.Movie;
 import org.example.kinoxpbackend.model.Showtime;
-import org.example.kinoxpbackend.model.Theatre;
 import org.example.kinoxpbackend.repository.MovieRepository;
 import org.example.kinoxpbackend.repository.ShowtimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

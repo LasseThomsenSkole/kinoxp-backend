@@ -22,16 +22,20 @@ public class ShowtimeController {
         return ResponseEntity.ok(showtime);
     }
 
-    @DeleteMapping("/delete-showtime/{id}")
-    public ResponseEntity<String> deleteMovie(@PathVariable Long id){
-        showtimeService.deleteShowtime(id);
+    @DeleteMapping("/delete-showtime/{movieId}")
+    public ResponseEntity<String> deleteMovie(@PathVariable Long movieId){
+        showtimeService.deleteShowtime(movieId);
         return ResponseEntity.ok("Show deleted");
     }
 
-    @PutMapping("/edit-showtime/{id}")
+    @PutMapping("/edit-showtime/{movieId}")
     public ResponseEntity<Showtime> editMoviePost(@PathVariable Long movieId, @RequestBody Showtime updatedShowtime){
         showtimeService.editShowtime(movieId, updatedShowtime);
         return ResponseEntity.ok(updatedShowtime);
     }
 
+    @GetMapping("/all-showtimes/{movieId}")
+    public ResponseEntity<List<Showtime>> getAllShowtimesForMovie(@PathVariable Long movieId){
+        return ResponseEntity.ok(showtimeService.getShowtimesForMovie(movieId));
+    }
 }
