@@ -16,25 +16,21 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
     @PostMapping("/create-movie")
-    public String createMovie(@RequestBody Movie movie){
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie){
         movieService.createMovie(movie);
-        return "movie added successfully";
+        return ResponseEntity.ok(movie);
     }
 
     @DeleteMapping("/delete-movie/{id}")
-    public void deleteMovie(@PathVariable int id){
+    public ResponseEntity<String> deleteMovie(@PathVariable int id){
         movieService.deleteMovie(id);
+        return ResponseEntity.ok("Movie deleted");
     }
 
     @PutMapping("/edit-movie/{id}")
-    public String editMoviePost(@PathVariable int id, @RequestBody Movie updatedMovie){
+    public ResponseEntity<Movie> editMoviePost(@PathVariable int id, @RequestBody Movie updatedMovie){
         movieService.editMovie(id, updatedMovie);
-        return "/";
-    }
-    @GetMapping("/edit-movie/{id}")
-    public String editMovie(@PathVariable int id, Movie movie){
-        movieService.getMovieDetails(id, movie);
-        return "/";
+        return ResponseEntity.ok(updatedMovie);
     }
 
     @GetMapping("/all-movies")
