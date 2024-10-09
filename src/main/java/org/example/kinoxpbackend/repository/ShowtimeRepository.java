@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface ShowtimeRepository extends JpaRepository<Showtime, Long> {
 
-    List<Showtime> findByMovieId(Long movieId);
+    Showtime findByMovieId(Long movieId);
+
+    List<Showtime> findAllByMovieId(Long movieId);
 
     List<Showtime> findByTheatreId(Long theatreId);
     //TODO find ud af hvilken time type det skal være

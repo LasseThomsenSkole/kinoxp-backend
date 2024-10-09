@@ -21,14 +21,38 @@ public class ShowtimeService {
     @Autowired
     private MovieRepository movieRepository;
 
+    //tilføj filmvisning
+    public Showtime createShowtime(Showtime showtime){
+        return showtimeRepository.save(showtime);
+    }
+
     // Slet en filmvisning
     public void deleteShowtime(Long showtimeId) {
         showtimeRepository.deleteById(showtimeId);
     }
 
+    //Rediger en filmvisning
+    public Showtime editShowtime(Long movieId, Showtime updatedShowtime) {
+        Optional <Showtime> showtime = Optional.ofNullable(showtimeRepository.findByMovieId(movieId));
+
+        if (showtime.isPresent()) {
+            Showtime currentShowtime = showtime.get();
+
+            currentShowtime.setMovie(updatedShowtime.getMovie());
+            currentShowtime.setShowtime(updatedShowtime.getShowtime());
+            currentShowtime.setStartTime(updatedShowtime.getStartTime());
+            currentShowtime.setTheatre(updatedShowtime.getTheatre());
+
+            return showtimeRepository.save(updatedShowtime);
+        }
+        else {
+            throw new RuntimeException();
+        }
+    }
+
     // Hent alle filmvisninger for en bestemt film
     public List<Showtime> getShowtimesForMovie(Long movieId) {
-        return showtimeRepository.findByMovieId(movieId);
+        return showtimeRepository.findAllByMovieId(movieId);
     }
 
     // Hent alle filmvisninger for en bestemt biografsal
