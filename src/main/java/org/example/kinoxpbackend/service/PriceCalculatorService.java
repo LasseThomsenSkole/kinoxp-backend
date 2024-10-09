@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PriceCalculatorService {
 
-
     private Movie movieClass = new Movie();
     private Seat seatClass = new Seat();
     private Reservation reservationClass = new Reservation();
