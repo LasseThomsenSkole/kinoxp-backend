@@ -31,8 +31,6 @@ public class Movie {
     @Column(nullable = false, length = 5)
     private String ageLimit;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     private Date releaseDate;
 
     @Temporal(TemporalType.DATE)
