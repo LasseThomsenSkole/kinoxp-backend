@@ -1,17 +1,23 @@
 package org.example.kinoxpbackend.service;
 
 import org.example.kinoxpbackend.model.Movie;
+import org.example.kinoxpbackend.model.Reservation;
 import org.example.kinoxpbackend.model.Seat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PriceCalculatorService {
 
-    Movie movieClass = new Movie();
-    Seat seatClass = new Seat();
+
+    private Movie movieClass = new Movie();
+    private Seat seatClass = new Seat();
+    private Reservation reservationClass = new Reservation();
 
     double basePrice = movieClass.getBasePrice();
     int row = seatClass.getRowNumber();
+    double ticketPrice = reservationClass.getTicketPrice();
+    int tickets; //brug for mængden af tickets
     private static final double groupDiscountRate = 0.07;
     private static final double groupReservationFee = 5;
 
@@ -33,30 +39,30 @@ public class PriceCalculatorService {
 
     //priser for ekstra spilletid
     public double extraDurationTicketPrice () {
-        int ticketPrice = 0;
+        int extraTicketPrice = 0;
         int extraDurationFee = 20;
 
         if (movieClass.getDuration()>=170){
-            ticketPrice = extraDurationFee;
-            return ticketPrice;
+            extraTicketPrice = extraDurationFee;
+            return extraTicketPrice;
         }
-        return ticketPrice;
+        return extraTicketPrice;
     }
 
     //totale pris for billetter
     public double calculateTotalPrice(int tickets) { /**Skal konnekte til der hvor vi skriver antallet af billetter købt ind.**/
-        double totalTicketPrice = 0;
+        ticketPrice = 0;
 
         if (tickets<=5){ //tickets mangler med int value + sæde/row tilsat
-            totalTicketPrice = (tickets*groupReservationFee)+priceRow()+extraDurationTicketPrice();
+            ticketPrice = (tickets*groupReservationFee)+(tickets*priceRow())+(tickets*extraDurationTicketPrice());
 
         } else if (tickets<=5 && tickets>=10) {
-            totalTicketPrice = priceRow();
+            ticketPrice = tickets*priceRow()+(tickets*extraDurationTicketPrice());
 
         } else if (tickets>=10) {
-            totalTicketPrice = (tickets*groupDiscountRate)+priceRow()+extraDurationTicketPrice();
+            ticketPrice = (tickets*groupDiscountRate)+(tickets*priceRow())+(tickets*extraDurationTicketPrice());
 
         }
-        return totalTicketPrice;
+        return ticketPrice;
     }
 }

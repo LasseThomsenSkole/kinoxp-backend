@@ -37,11 +37,10 @@ public class MovieController {
         return "/";
     }
 
-   /* @GetMapping("/all-movies")
-    public String getAllMovies(){
-        movieService.findAllMovies();
-        return "/";
-    }*/
+    @GetMapping("/all-movies")
+    public ResponseEntity<List<Movie>> getAllMovies(){
+        return ResponseEntity.ok(movieService.getMovieList());
+    }
 
     @GetMapping("/" +
             "" +

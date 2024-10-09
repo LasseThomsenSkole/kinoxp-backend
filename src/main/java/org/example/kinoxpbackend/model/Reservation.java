@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 @Entity
 public class Reservation {
 
+    //TODO brug for mængden af billetter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,7 +19,10 @@ public class Reservation {
     @JoinColumn(name = "showtime_id", nullable = false)
     private Showtime showtime;
 
-    public Reservation() {}
+    private double ticketPrice;
+
+    public Reservation() {
+    }
 
     public Reservation(Seat seat, Showtime showtime) {
         this.seat = seat;
@@ -36,6 +41,10 @@ public class Reservation {
         return showtime;
     }
 
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -47,4 +56,9 @@ public class Reservation {
     public void setShowtime(Showtime showtime) {
         this.showtime = showtime;
     }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
 }

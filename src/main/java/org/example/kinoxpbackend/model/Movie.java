@@ -42,7 +42,7 @@ public class Movie {
     private String description;
 
     @Column(nullable = false)
-    private double basePrice; //admin skal kunne ændre priser - kun basepris?
+    private double basePrice; //admin skal kunne ændre priser på hjemmeside - kun basepris?
 
     @Column
     private String moviePoster;
