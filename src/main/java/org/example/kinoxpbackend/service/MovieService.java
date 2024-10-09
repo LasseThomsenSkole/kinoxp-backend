@@ -71,6 +71,7 @@ public class MovieService {
         movieDetails.append(movie.getDuration());
         movieDetails.append(movie.getAgeLimit());
         movieDetails.append(movie.getDescription());
+        movieDetails.append(movie.getMoviePoster());
 
         return movieDetails.toString();
     }

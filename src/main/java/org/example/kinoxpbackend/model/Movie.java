@@ -44,8 +44,11 @@ public class Movie {
     @Column(nullable = false)
     private double basePrice; //admin skal kunne ændre priser - kun basepris?
 
+    @Column
+    private String moviePoster;
 
-    public Movie (String title, Genre genre, int duration, String ageLimit, Date releaseDate, Date endDate, String description, int basePrice) {
+
+    public Movie (String title, Genre genre, int duration, String ageLimit, Date releaseDate, Date endDate, String description, int basePrice, String moviePoster) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
@@ -54,6 +57,7 @@ public class Movie {
         this.endDate = endDate;
         this.description = description;
         this.basePrice = basePrice;
+        this.moviePoster = moviePoster;
     }
 
 

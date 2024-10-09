@@ -27,8 +27,13 @@ public class MovieController {
     }
 
     @PutMapping("/edit-movie/{id}")
-    public String editMovie(@PathVariable int id, @RequestBody Movie updatedMovie){
+    public String editMoviePost(@PathVariable int id, @RequestBody Movie updatedMovie){
         movieService.editMovie(id, updatedMovie);
+        return "/";
+    }
+    @GetMapping("/edit-movie/{id}")
+    public String editMovie(@PathVariable int id, Movie movie){
+        movieService.getMovieDetails(id, movie);
         return "/";
     }
 
@@ -38,7 +43,9 @@ public class MovieController {
         return "/";
     }*/
 
-    @GetMapping("/{id}")
+    @GetMapping("/" +
+            "" +
+            "{id}")
     public ResponseEntity<Movie> movieDetails(@PathVariable int id){
         Movie movie = movieService.getMovieById(id);
         return ResponseEntity.ok(movie);
