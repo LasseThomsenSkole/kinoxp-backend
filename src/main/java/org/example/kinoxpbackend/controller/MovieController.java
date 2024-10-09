@@ -43,9 +43,7 @@ public class MovieController {
         return "/";
     }*/
 
-    @GetMapping("/" +
-            "" +
-            "{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Movie> movieDetails(@PathVariable int id){
         Movie movie = movieService.getMovieById(id);
         return ResponseEntity.ok(movie);
