@@ -34,8 +34,8 @@ public class ReservationController {
 
     // Slet reservation
     @DeleteMapping("/delete/{reservationId}")
-    public ResponseEntity<Void> deleteReservation(@PathVariable Long reservationId) {
+    public ResponseEntity<String> deleteReservation(@PathVariable Long reservationId) {
         reservationService.deleteReservation(reservationId);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Reservation deleted");
     }
 }
