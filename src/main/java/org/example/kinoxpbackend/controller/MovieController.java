@@ -43,4 +43,13 @@ public class MovieController {
         Movie movie = movieService.getMovieById(id);
         return ResponseEntity.ok(movie);
     }
+
+    @GetMapping("/upcoming-movies")
+    public ResponseEntity<List<Movie>> getUpcomingMovies() {
+        List<Movie> upcomingMovies = movieService.getUpcomingMovies();
+        if (upcomingMovies == null || upcomingMovies.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(upcomingMovies);
+    }
 }

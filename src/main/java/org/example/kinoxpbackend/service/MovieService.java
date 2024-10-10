@@ -5,6 +5,7 @@ import org.example.kinoxpbackend.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,11 @@ public class MovieService {
     }
     public Movie getMovieById(int id){
         return movieRepository.findMovieById(id);
+    }
+
+    public List<Movie> getUpcomingMovies() {
+        Date today = new Date();  // Få dagens dato
+        return movieRepository.findByReleaseDateAfter(today);
     }
 
 }

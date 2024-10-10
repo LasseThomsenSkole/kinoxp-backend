@@ -31,6 +31,8 @@ public class Movie {
     @Column(nullable = false, length = 5)
     private String ageLimit;
 
+    @Temporal(TemporalType.DATE)  // Denne annotation hjælper JPA med at forstå mapping
+    @Column(name = "release_date")
     private Date releaseDate;
 
     @Temporal(TemporalType.DATE)
