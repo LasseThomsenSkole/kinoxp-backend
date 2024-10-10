@@ -59,6 +59,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(registry -> registry
                         .requestMatchers("/auth/admin").hasAuthority(Role.ADMIN.name())
                         .requestMatchers("/auth/login", "/auth/register").permitAll()
+                        .requestMatchers("/auth/validate-role").permitAll()
                         .requestMatchers(HttpMethod.GET, "/movie/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/movie/create-movie").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/movie/delete-movie/**").hasAuthority(Role.ADMIN.name())

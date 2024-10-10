@@ -11,11 +11,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 //todo lav om til /auth/
 @RestController
 @RequestMapping("/auth")
@@ -53,6 +58,15 @@ public class AuthController {
         final UserPrincipal userPrincipal = (UserPrincipal) auth.getPrincipal();
         System.out.println("role: " + userPrincipal.getAuthorities()); // Add logging
         return jwtUtil.generateToken(userPrincipal);
+    }
+    @GetMapping("/validate-role")
+    public ResponseEntity<List<String>> validateRole(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+
+        List<String> roles = userPrincipal.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(roles);
     }
     @GetMapping("/test")
     public String test(@AuthenticationPrincipal UserPrincipal userPrincipal) {
