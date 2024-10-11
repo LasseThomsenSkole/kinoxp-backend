@@ -64,6 +64,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/movie/create-movie").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/movie/delete-movie/**").hasAuthority(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/movie/edit-movie/**").hasAuthority(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.POST, "/showtime/create-showtime/**").hasAuthority(Role.ADMIN.name())
                         .anyRequest().authenticated());
 
         return http.build();
