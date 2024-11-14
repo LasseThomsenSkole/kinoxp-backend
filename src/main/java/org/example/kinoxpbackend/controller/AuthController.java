@@ -61,7 +61,6 @@ public class AuthController {
     }
     @GetMapping("/validate-role")
     public ResponseEntity<List<String>> validateRole(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-
         List<String> roles = userPrincipal.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
