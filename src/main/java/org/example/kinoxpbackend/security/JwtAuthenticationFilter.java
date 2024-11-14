@@ -22,7 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         getJwtFromRequest(request)
                 .map(jwtUtil::extractAllClaims) // Extract claims from JWT
                 .map(jwtUtil::jwtToUserPrincipal) // Convert claims to UserPrincipal
-                .map(UserPrincipalAuthenticationToken::new) // Use lambda instead of method reference
+                .map(UserPrincipalAuthenticationToken::new)
                 .ifPresent(authentication -> {
                     // Set authentication in SecurityContext
                     SecurityContextHolder.getContext().setAuthentication(authentication);
